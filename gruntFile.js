@@ -20,7 +20,7 @@ module.exports = function (grunt) {
 			},
             scripts: {
                 files: ['src/*.js'],
-                tasks: ['build-dev']
+                tasks: []
             },
             options: {
                 livereload: watchPort
