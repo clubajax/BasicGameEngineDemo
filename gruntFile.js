@@ -15,11 +15,11 @@ module.exports = function (grunt) {
 				files: 'src/demo.css'
 			},
 			html: {
-				files: ['demo/*.html'],
+				files: ['demo/*.html', 'experiments/*.html'],
 				tasks: []
 			},
             scripts: {
-                files: ['src/*.js'],
+                files: ['src/**/*js', 'experiments/*.js'],
                 tasks: []
             },
             options: {
