@@ -26,4 +26,4 @@ add(new Ball(width/2, 11, 20, 10, canvas, {}));
 play();
 setTimeout(() => {
 	pause();
-}, 3000);
+}, 1000);

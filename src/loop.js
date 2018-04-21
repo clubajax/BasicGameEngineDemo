@@ -1,19 +1,16 @@
+const frameRate = 1/60; // Seconds
+const frameDelay = frameRate * 1000; // ms
+let mark;
+let loopTimer;
+
 let lastTime = 0;
-function loop (elapsed) {
+function loop () {
+	const elapsed = performance.now() - mark;
+	mark = performance.now();
 
-	handle = window.requestAnimationFrame(loop);
-	if (!elapsed) {
-		return;
-	}
-	const time = elapsed - lastTime;
-	lastTime = elapsed;
-	if (time > 100) {
-		return;
-	}
-	// console.log('t', time);
-
+	console.log('loop', elapsed, frameRate, frameDelay);
 	components.forEach((component) => {
-		component.render(time);
+		component.render(elapsed);
 	});
 }
 
@@ -26,10 +23,12 @@ export function register (component) {
 let handle;
 export function play () {
 	console.log('play');
-	loop();
+	mark = performance.now();
+	loopTimer = setInterval(loop, frameDelay);
 }
 
 export function pause () {
 	console.log('pause');
-	window.cancelAnimationFrame(handle);
+	clearTimeout(loopTimer);
+	// window.cancelAnimationFrame(handle);
 }
