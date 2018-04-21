@@ -10,7 +10,7 @@ const height = 400;
 
 const canvas = createCanvas(width, height);
 
-const physics = new Physics();
+const physics = new Physics(width, height);
 const renderer = new Renderer(canvas);
 
 function add (sprite) {
@@ -26,4 +26,4 @@ add(new Ball(width/2, 11, 20, 10, canvas, {}));
 play();
 setTimeout(() => {
 	pause();
-}, 500);
+}, 1500);
