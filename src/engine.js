@@ -1,4 +1,4 @@
-import Canvas from './Canvas.js';
+import Canvas from './display/Canvas.js';
 import { pause, play, register } from './loop.js';
 import Physics from './Physics.js';
 import Renderer from './Renderer.js'

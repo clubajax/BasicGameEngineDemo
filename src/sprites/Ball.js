@@ -1,4 +1,4 @@
-import Style from './Style.js';
+import Style from '../display/Style.js';
 
 export default class Ball {
 	constructor (x, y, r, speed, canvas, style) {
