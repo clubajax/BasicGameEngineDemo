@@ -35,12 +35,13 @@ export default class Physics {
 			ball.velocity.x += ax * frameRate;
 			ball.velocity.y += ay * frameRate;
 
-			if (Math.abs(ball.velocity.x - ox) <= 0.0005) {
-				ball.velocity.x = 0;
-			}
+			// add friction instead
+			// if (Math.abs(ball.velocity.x - ox) <= 0.0005) {
+			// 	ball.velocity.x = 0;
+			// }
 
 
-			console.log(ball.velocity.x - ox, ox, ball.velocity.x);
+			// console.log(ball.velocity.x - ox, ox, ball.velocity.x);
 
 			ball.position.x += ball.velocity.x * frameRate * 100;
 			ball.position.y += ball.velocity.y * frameRate * 100;

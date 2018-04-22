@@ -21,6 +21,10 @@ export default class Ball {
 		this.style = new Style(style, canvas);
 	}
 
+	get friction () {
+
+	}
+
 	get x () {
 		return this.position.x;
 	}

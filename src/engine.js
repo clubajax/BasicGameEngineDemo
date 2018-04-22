@@ -1,4 +1,4 @@
-import createCanvas from './createCanvas.js';
+import Canvas from './Canvas.js';
 import { pause, play, register } from './loop.js';
 import Physics from './Physics.js';
 import Renderer from './Renderer.js'
@@ -8,7 +8,7 @@ import Ball from './sprites/Ball.js';
 const width = 500;
 const height = 400;
 
-const canvas = createCanvas(width, height);
+const canvas = new Canvas(width, height);
 
 const physics = new Physics(width, height);
 const renderer = new Renderer(canvas);
