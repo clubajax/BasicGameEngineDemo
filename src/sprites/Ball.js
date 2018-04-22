@@ -4,13 +4,8 @@ export default class Ball {
 	constructor (x, y, r, speed, canvas, style) {
 		this.r = r;
 
-		this.ax = 2;
-		this.ay = 0;
-
-		this.vx_max = 1;
-
 		this.velocity = {
-			x: 5,
+			x: 10,
 			y: 0
 		};
 
@@ -19,8 +14,8 @@ export default class Ball {
 			y
 		};
 
-		this.mass = .1; //kg
-		this.restitution = -1.0;
+		this.mass = .5; //kg
+		this.restitution = -0.9;
 
 		this.canvas = canvas;
 		this.style = new Style(style, canvas);
