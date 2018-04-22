@@ -8,7 +8,6 @@ function loop () {
 	const elapsed = performance.now() - mark;
 	mark = performance.now();
 
-	console.log('loop', elapsed, frameRate, frameDelay);
 	components.forEach((component) => {
 		component.render(elapsed);
 	});

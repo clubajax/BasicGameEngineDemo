@@ -21,9 +21,9 @@ function add (sprite) {
 register(physics);
 register(renderer);
 
-add(new Ball(width/2, 11, 20, 10, canvas, {}));
+add(new Ball(20, 11, 20, 10, canvas, {}));
 
 play();
 setTimeout(() => {
 	pause();
-}, 1000);
+}, 3000);

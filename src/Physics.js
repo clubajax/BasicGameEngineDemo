@@ -2,7 +2,7 @@
 const Cd = 1;//0.47;  // coefficient of drag - Dimensionless
 const rho = 1; //1.22; // kg / m^3 - density of the fluid the sprite is in
 //const A = Math.PI * sprite.radius * sprite.radius / (10000); // m^2 - area
-const gravity = .15;//9.81;  // m / s^2 - gravity
+const gravity = 9.81;  // m / s^2 - gravity
 const maxGravity = 20;
 
 export default class Physics {
@@ -19,36 +19,33 @@ export default class Physics {
 	render (time) {
 		this.sprites.forEach((sprite) => {
 
-			const frameRate = time / 15;
-			const A = 1; //sprite.area;
+			const frameRate = 1/60; // Seconds
+			const ball = sprite;
+			const A = ball.area;
 
-			sprite.ay += gravity;
+			let Fx = -0.5 * Cd * A * rho * ball.velocity.x * ball.velocity.x * ball.velocity.x / Math.abs(ball.velocity.x);
+			let Fy = -0.5 * Cd * A * rho * ball.velocity.y * ball.velocity.y * ball.velocity.y / Math.abs(ball.velocity.y);
 
-			let ax = sprite.vx + sprite.ax;
-			let ay = sprite.vy + sprite.ay// + gravity;
+			Fx = (isNaN(Fx) ? 0 : Fx);
+			Fy = (isNaN(Fy) ? 0 : Fy);
 
-			ax *= frameRate;
-			ay *= frameRate;
+			// Calculate acceleration ( F = ma )
+			const ax = Fx / ball.mass;
+			const ay = gravity + (Fy / ball.mass);
+			// Integrate to get velocity
+			ball.velocity.x += ax*frameRate;
+			ball.velocity.y += ay*frameRate;
 
-			sprite.vx = Math.min(ax, sprite.vx_max);
+			// Integrate to get position
+			ball.position.x += ball.velocity.x*frameRate*100;
+			ball.position.y += ball.velocity.y*frameRate*100;
 
-			// console.log('sprite.vy', sprite.vy);
-
-			ay = Math.min(maxGravity * sprite.mass, Math.abs(ay)) * (ay >= 0 ? 1 : -1);
-
-			sprite.vy = ay; //sprite.vy > 0 ? Math.min(maxGravity * sprite.mass, ay) : Math.max(maxGravity * sprite.mass, ay);
-
-			let x = sprite.x + sprite.vx;
-			let y = sprite.y + sprite.vy;
-
-			if (y > this.height) {
-				y = this.height - (y - this.height);
-				sprite.vy *= -0.5;
-				sprite.ay = 0;
+			if (ball.position.y > this.height - ball.radius) {
+				ball.velocity.y *= ball.restitution;
+				ball.position.y = this.height - ball.radius;
 			}
-			sprite.x = x;
-			sprite.y = y;
 
+			// console.log('', ball.position.y);
 		});
 	}
 }

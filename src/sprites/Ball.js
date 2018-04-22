@@ -2,8 +2,6 @@ import Style from './Style.js';
 
 export default class Ball {
 	constructor (x, y, r, speed, canvas, style) {
-		this.x = x;
-		this.y = y;
 		this.r = r;
 
 		this.ax = 2;
@@ -11,14 +9,41 @@ export default class Ball {
 
 		this.vx_max = 1;
 
-		this.vx = 0;
-		this.vy = 0;
+		this.velocity = {
+			x: 5,
+			y: 0
+		};
 
-		this.mass = 1; //kg
-		this.restitution = -0.7;
+		this.position = {
+			x,
+			y
+		};
+
+		this.mass = .1; //kg
+		this.restitution = -1.0;
 
 		this.canvas = canvas;
 		this.style = new Style(style, canvas);
+	}
+
+	get x () {
+		return this.position.x;
+	}
+
+	get y () {
+		return this.position.y;
+	}
+
+	get vx () {
+		return this.velocity.x;
+	}
+
+	get vy () {
+		return this.velocity.x;
+	}
+
+	get radius () {
+		return this.r;
 	}
 
 	render () {
