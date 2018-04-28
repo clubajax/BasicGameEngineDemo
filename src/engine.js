@@ -1,8 +1,7 @@
 import Canvas from './display/Canvas.js';
 import { pause, play, register } from './loop.js';
 import Physics from './Physics.js';
-import Renderer from './Renderer.js'
-
+import Renderer from './Renderer.js';
 import Ball from './sprites/Ball.js';
 
 const width = 500;

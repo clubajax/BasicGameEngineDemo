@@ -29,5 +29,4 @@ export function play () {
 export function pause () {
 	console.log('pause');
 	clearTimeout(loopTimer);
-	// window.cancelAnimationFrame(handle);
 }
