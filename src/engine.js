@@ -20,8 +20,20 @@ function add (sprite) {
 register(physics);
 register(renderer);
 
-add(new Ball(100, 300, 20, 10, canvas, {}));
-add(new Ball(50, 50, 20, 10, canvas, {}));
+add(new Ball({
+	x: 100,
+	y: 300,
+	radius: 20,
+	canvas,
+	style: {}
+}));
+add(new Ball({
+	x: 50,
+	y: 50,
+	radius: 15,
+	canvas,
+	style: {}
+}));
 
 play();
 setTimeout(() => {

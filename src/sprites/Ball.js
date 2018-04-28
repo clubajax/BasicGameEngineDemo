@@ -1,24 +1,20 @@
 import Style from '../display/Style.js';
+import Vector from '../core/Vector.js';
 
 export default class Ball {
-	constructor (x, y, r, speed, canvas, style) {
-		this.r = r;
+	constructor (options) {
+		// x, y, r, speed, canvas, style
+		this.r = options.radius;
 
-		this.velocity = {
-			x: 10,
-			y: 0
-		};
+		this.velocity = new Vector(10, 0);
 
-		this.position = {
-			x,
-			y
-		};
+		this.position = new Vector(options.x, options.y);
 
 		this.mass = .5; //kg
 		this.restitution = -0.9;
 
-		this.canvas = canvas;
-		this.style = new Style(style, canvas);
+		this.canvas = options.canvas;
+		this.style = new Style(options.style, this.canvas);
 	}
 
 	get friction () {
