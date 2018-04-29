@@ -1,5 +1,6 @@
+import Vector from './core/Vector.js';
 
-const drag = 10.47;  // coefficient of drag - Dimensionless
+const drag = 10.47 * -0.5;  // coefficient of drag - Dimensionless
 const environment = 1.22; // kg / m^3 - density of the fluid the sprite is in
 const gravity = 9.81;  // m / s^2 - gravity
 
@@ -19,32 +20,29 @@ export default class Physics {
 
 			const width = this.width;
 			const height = this.height;
-			const frameRate = 1/60; // Seconds
+			const frameRate = 1/60; // Seconds - 0.01666
 			const ball = sprite;
 
-			let forceX = -0.5 * drag * ball.area * environment * Math.pow(ball.velocity.x, 3) / Math.abs(ball.velocity.x);
-			let forceY = -0.5 * drag * ball.area * environment * Math.pow(ball.velocity.y, 3) / Math.abs(ball.velocity.y);
+			let forceX = drag * ball.area * environment * Math.pow(ball.velocity.x, 3) / Math.abs(ball.velocity.x);
+			let forceY = drag * ball.area * environment * Math.pow(ball.velocity.y, 3) / Math.abs(ball.velocity.y);
 
-			forceX = (isNaN(forceX) ? 0 : forceX);
-			forceY = (isNaN(forceY) ? 0 : forceY);
+			let force = new Vector(
+				drag * ball.area * environment * Math.pow(ball.velocity.x, 3) / Math.abs(ball.velocity.x),
+				drag * ball.area * environment * Math.pow(ball.velocity.y, 3) / Math.abs(ball.velocity.y)
+			);
 
-			const ax = forceX / ball.mass;
-			const ay = gravity + (forceY / ball.mass);
+			let acceleration = new Vector(
+				force.x / ball.mass * frameRate,
+				(gravity + (force.y / ball.mass)) * frameRate
+			);
 
-			const ox = ball.velocity.x;
-			ball.velocity.x += ax * frameRate;
-			ball.velocity.y += ay * frameRate;
+			ball.velocity.add(acceleration);
 
-			// add friction instead
-			// if (Math.abs(ball.velocity.x - ox) <= 0.0005) {
-			// 	ball.velocity.x = 0;
-			// }
+			ball.velocity.mult(frameRate * 63 );
 
+			// add friction
 
-			// console.log(ball.velocity.x - ox, ox, ball.velocity.x);
-
-			ball.position.x += ball.velocity.x * frameRate * 100;
-			ball.position.y += ball.velocity.y * frameRate * 100;
+			ball.position.add(ball.velocity);
 
 			if (ball.position.y > height - ball.radius) {
 				ball.velocity.y *= ball.restitution;
@@ -62,7 +60,7 @@ export default class Physics {
 			}
 
 			// console.log(ball.position.x);
-
+			//
 			// console.log('', ball.position.y);
 		});
 	}

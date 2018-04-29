@@ -2,8 +2,8 @@ export default class Vector {
 	constructor (x, y, x1, y1) {
 		this._x = x1;
 		this._y = y1;
-		this.x = x;
-		this.y = y;
+		this.x = isNaN(x) ? 0 : x;
+		this.y = isNaN(y) ? 0 : y;
 	}
 
 	set x (x) {
