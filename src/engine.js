@@ -22,8 +22,10 @@ register(renderer);
 
 add(new Ball({
 	x: 100,
-	y: 300,
+	y: 200,
 	radius: 20,
+	mass: .45,
+	restitution: -0.8,
 	canvas,
 	style: {}
 }));
@@ -31,6 +33,8 @@ add(new Ball({
 	x: 50,
 	y: 50,
 	radius: 15,
+	mass: 0.5,
+	restitution: -0.75,
 	canvas,
 	style: {}
 }));
@@ -38,4 +42,4 @@ add(new Ball({
 play();
 setTimeout(() => {
 	pause();
-}, 6000);
+}, 10000);

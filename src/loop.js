@@ -1,4 +1,4 @@
-const frameRate = 1/60; // Seconds
+const frameRate = 1/100; // Seconds
 const frameDelay = frameRate * 1000; // ms
 let mark;
 let loopTimer;
@@ -21,7 +21,7 @@ export function register (component) {
 
 let handle;
 export function play () {
-	console.log('play');
+	console.log('play', frameDelay);
 	mark = performance.now();
 	loopTimer = setInterval(loop, frameDelay);
 }

@@ -21,47 +21,44 @@ export default class Physics {
 			const width = this.width;
 			const height = this.height;
 			const frameRate = 1/60; // Seconds - 0.01666
-			const ball = sprite;
-
-			let forceX = drag * ball.area * environment * Math.pow(ball.velocity.x, 3) / Math.abs(ball.velocity.x);
-			let forceY = drag * ball.area * environment * Math.pow(ball.velocity.y, 3) / Math.abs(ball.velocity.y);
 
 			let force = new Vector(
-				drag * ball.area * environment * Math.pow(ball.velocity.x, 3) / Math.abs(ball.velocity.x),
-				drag * ball.area * environment * Math.pow(ball.velocity.y, 3) / Math.abs(ball.velocity.y)
+				drag * sprite.area * environment * Math.pow(sprite.velocity.x, 3) / Math.abs(sprite.velocity.x),
+				drag * sprite.area * environment * Math.pow(sprite.velocity.y, 3) / Math.abs(sprite.velocity.y)
 			);
 
 			let acceleration = new Vector(
-				force.x / ball.mass * frameRate,
-				(gravity + (force.y / ball.mass)) * frameRate
+				force.x / sprite.mass * frameRate,
+				(gravity + (force.y / sprite.mass)) * frameRate
 			);
 
-			ball.velocity.add(acceleration);
-
-			ball.velocity.mult(frameRate * 63 );
+			sprite.velocity.add(acceleration);
+			sprite.velocity.mult(frameRate * 63 );
 
 			// add friction
 
-			ball.position.add(ball.velocity);
+			sprite.position.add(sprite.velocity);
 
-			if (ball.position.y > height - ball.radius) {
-				ball.velocity.y *= ball.restitution;
-				ball.position.y = height - ball.radius;
+
+			// sprite,resolveCollision(
+			// height,
+			// width,
+			// 0
+			// )
+			if (sprite.position.y > height - sprite.radius) {
+				sprite.velocity.y *= sprite.restitution;
+				sprite.position.y = height - sprite.radius;
 			}
 
-			if (ball.position.x > width - ball.radius) {
-				ball.velocity.x *= ball.restitution;
-				ball.position.x = width - ball.radius;
+			if (sprite.position.x > width - sprite.radius) {
+				sprite.velocity.x *= sprite.restitution;
+				sprite.position.x = width - sprite.radius;
 			}
 
-			if (ball.position.x < ball.radius) {
-				ball.velocity.x *= ball.restitution;
-				ball.position.x = ball.radius;
+			if (sprite.position.x < sprite.radius) {
+				sprite.velocity.x *= sprite.restitution;
+				sprite.position.x = sprite.radius;
 			}
-
-			// console.log(ball.position.x);
-			//
-			// console.log('', ball.position.y);
 		});
 	}
 }
