@@ -20,16 +20,16 @@ function add (sprite) {
 register(physics);
 register(renderer);
 
-add(new Ball({
-	x: 100,
-	y: 200,
-	radius: 20,
-	mass: .45,
-	restitution: -0.8,
-	friction: 0.95,
-	canvas,
-	style: {}
-}));
+// add(new Ball({
+// 	x: 100,
+// 	y: 200,
+// 	radius: 20,
+// 	mass: .45,
+// 	restitution: -0.8,
+// 	friction: 0.95,
+// 	canvas,
+// 	style: {}
+// }));
 
 add(new Ball({
 	x: 50,

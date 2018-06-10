@@ -16,37 +16,50 @@ export default class Physics {
 	}
 
 	render (time) {
+
+		const width = this.width;
+		const height = this.height;
+		const frameRate = 1/60; // Seconds - 0.01666
+
+		const T = 1/15;
+		const G = 2 * T;
+
 		this.sprites.forEach((sprite) => {
 
-			const width = this.width;
-			const height = this.height;
-			const frameRate = 1/60; // Seconds - 0.01666
+			sprite.velocity.add({
+				x: sprite.acceleration.x * T,
+				y: sprite.acceleration.y * T + G
+			});
 
-			let force = new Vector(
-				drag * sprite.area * environment * Math.pow(sprite.velocity.x, 3) / Math.abs(sprite.velocity.x),
-				drag * sprite.area * environment * Math.pow(sprite.velocity.y, 3) / Math.abs(sprite.velocity.y)
-			);
+			sprite.position.add({
+				x: sprite.velocity.x,
+				y: sprite.velocity.y
+			});
+			// entity.vx += entity.ax * elapsed + gx;
+			// entity.vy += entity.ay * elapsed + gy;
+			// entity.x  += entity.vx * elapsed;
+			// entity.y  += entity.vy * elapsed;
 
-
-			const fr = sprite.friction;
-
-			// console.log(force.x);
-			let acceleration = new Vector(
-				(force.x / sprite.mass) * frameRate,
-				(gravity + (force.y / sprite.mass)) * frameRate
-			);
-
-			sprite.velocity.add(acceleration);
-			sprite.velocity.mult(frameRate * 63 );
-
-
-			sprite.velocity.x *= fr;
-
-			// console.log(sprite.velocity.x);
-
-			// add friction
-
-			sprite.position.add(sprite.velocity);
+			// let force = new Vector(
+			// 	drag * sprite.area * environment * Math.pow(sprite.velocity.x, 3) / Math.abs(sprite.velocity.x),
+			// 	drag * sprite.area * environment * Math.pow(sprite.velocity.y, 3) / Math.abs(sprite.velocity.y)
+			// );
+			//
+			//
+			//
+			// // console.log(force.x);
+			// let acceleration = new Vector(
+			// 	(force.x / sprite.mass) * frameRate,
+			// 	(gravity + (force.y / sprite.mass)) * frameRate
+			// );
+			//
+			// sprite.velocity.add(acceleration);
+			// sprite.velocity.mult(frameRate * 63 );
+			//
+			// const fr = sprite.friction;
+			// sprite.velocity.x *= fr;
+			//
+			// sprite.position.add(sprite.velocity);
 
 
 			// sprite,resolveCollision(
