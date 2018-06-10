@@ -27,13 +27,22 @@ export default class Physics {
 				drag * sprite.area * environment * Math.pow(sprite.velocity.y, 3) / Math.abs(sprite.velocity.y)
 			);
 
+
+			const fr = sprite.friction;
+
+			// console.log(force.x);
 			let acceleration = new Vector(
-				force.x / sprite.mass * frameRate,
+				(force.x / sprite.mass) * frameRate,
 				(gravity + (force.y / sprite.mass)) * frameRate
 			);
 
 			sprite.velocity.add(acceleration);
 			sprite.velocity.mult(frameRate * 63 );
+
+
+			sprite.velocity.x *= fr;
+
+			// console.log(sprite.velocity.x);
 
 			// add friction
 

@@ -26,15 +26,18 @@ add(new Ball({
 	radius: 20,
 	mass: .45,
 	restitution: -0.8,
+	friction: 0.95,
 	canvas,
 	style: {}
 }));
+
 add(new Ball({
 	x: 50,
 	y: 50,
 	radius: 15,
 	mass: 0.5,
 	restitution: -0.75,
+	friction: 0.96,
 	canvas,
 	style: {}
 }));
@@ -42,4 +45,4 @@ add(new Ball({
 play();
 setTimeout(() => {
 	pause();
-}, 10000);
+}, 19000);

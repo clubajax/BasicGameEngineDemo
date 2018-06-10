@@ -12,8 +12,21 @@ export default class Ball {
 		this.mass = options.mass || .5; //kg
 		this.restitution = options.restitution || -0.9; // bounce
 
+
+		// what is its coefficient of friction with another surface with COF = 1?
+		this._friction = options.friction || 0.95;
+
+
 		this.canvas = options.canvas;
 		this.style = new Style(options.style, this.canvas);
+	}
+
+	get friction () {
+		// console.log('f', Math.round(this.position.y) === Math.round(this.position.lastY));
+		if (Math.round(this.position.y) === Math.round(this.position.lastY)) {
+			return this._friction;
+		}
+		return 1;
 	}
 
 	get radius () {

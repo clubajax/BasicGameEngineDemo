@@ -58,7 +58,7 @@ export default class Vector {
 	limit () {}
 
 	copy () {
-		return new Vector(this.x, thix.y, this._x, this._y);
+		return new Vector(this.x, this.y, this._x, this._y);
 	}
 
 	//
