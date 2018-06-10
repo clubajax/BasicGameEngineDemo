@@ -8,6 +8,7 @@ export default class Vector {
 
 	set x (x) {
 		this.lastX = this._x;
+		// this._x = +(x.toPrecision(4));
 		this._x = x;
 	}
 
@@ -17,6 +18,7 @@ export default class Vector {
 
 	set y (y) {
 		this.lastY = this._y;
+		// this._y = +(y.toPrecision(4));
 		this._y = y;
 	}
 

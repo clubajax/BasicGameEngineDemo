@@ -37,7 +37,7 @@ add(new Ball({
 	radius: 15,
 	mass: 0.5,
 	restitution: -0.75,
-	friction: 0.96,
+	// friction: 0.96,
 	canvas,
 	style: {}
 }));
@@ -46,3 +46,5 @@ play();
 setTimeout(() => {
 	pause();
 }, 19000);
+
+document.body.addEventListener('click', pause);

@@ -26,15 +26,16 @@ export default class Physics {
 
 		this.sprites.forEach((sprite) => {
 
-			sprite.velocity.add({
-				x: sprite.acceleration.x * T,
-				y: sprite.acceleration.y * T + G
-			});
-
-			sprite.position.add({
-				x: sprite.velocity.x,
-				y: sprite.velocity.y
-			});
+			sprite.update(T, G);
+			// sprite.velocity.add({
+			// 	x: sprite.acceleration.x * T,
+			// 	y: sprite.acceleration.y * T + G
+			// });
+			//
+			// sprite.position.add({
+			// 	x: sprite.velocity.x,
+			// 	y: sprite.velocity.y
+			// });
 			// entity.vx += entity.ax * elapsed + gx;
 			// entity.vy += entity.ay * elapsed + gy;
 			// entity.x  += entity.vx * elapsed;
