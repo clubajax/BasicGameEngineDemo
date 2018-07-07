@@ -45,6 +45,6 @@ add(new Ball({
 play();
 setTimeout(() => {
 	pause();
-}, 19000);
+}, 7000);
 
 document.body.addEventListener('click', pause);

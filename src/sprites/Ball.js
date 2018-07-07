@@ -33,8 +33,8 @@ export default class Ball {
 			y: this.velocity.y
 		});
 
-		// console.log('x', this.friction, this.position.x - this.position.lastX);
-		console.log('', this.velocity.x, this.acceleration.x);
+		console.log('x', this.position.x - this.position.lastX);
+		// console.log('', this.velocity.x, this.acceleration.x);
 	}
 
 	get friction () {
