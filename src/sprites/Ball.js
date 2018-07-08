@@ -22,10 +22,11 @@ export default class Ball {
 		this.style = new Style(options.style, this.canvas);
 	}
 
-	update (T, G) {
+	update (time, gravity) {
+		const friction = this.friction;
 		this.velocity.add({
-			x: this.acceleration.x * T * this.friction,
-			y: this.acceleration.y * T + G
+			x: this.acceleration.x * time * friction,
+			y: this.acceleration.y * time + gravity
 		});
 
 		this.position.add({
@@ -34,7 +35,7 @@ export default class Ball {
 		});
 
 		console.log('x', this.position.x - this.position.lastX);
-		// console.log('', this.velocity.x, this.acceleration.x);
+		console.log('    ', friction, this.velocity.x, this.acceleration.x);
 	}
 
 	get friction () {

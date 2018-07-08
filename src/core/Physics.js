@@ -1,13 +1,14 @@
-import Vector from './core/Vector.js';
+import Vector from './Vector.js';
 
 const drag = 10.47 * -0.5;  // coefficient of drag - Dimensionless
 const environment = 1.22; // kg / m^3 - density of the fluid the sprite is in
 const gravity = 9.81;  // m / s^2 - gravity
 
 export default class Physics {
-	constructor (width, height) {
-		this.width = width;
-		this.height = height;
+	constructor (options) {
+		this.width = options.width;
+		this.height = options.height;
+		this.frameRate = options.frameRate;
 		this.sprites = [];
 	}
 
@@ -19,14 +20,14 @@ export default class Physics {
 
 		const width = this.width;
 		const height = this.height;
-		const frameRate = 1/60; // Seconds - 0.01666
+		const frameRate = this.frameRate; //1/60; // Seconds - 0.01666
 
-		const T = 1/15;
-		const G = 2 * T;
+		// const T = 1/15;
+		const G = 2 * frameRate;
 
 		this.sprites.forEach((sprite) => {
 
-			sprite.update(T, G);
+			sprite.update(frameRate, G);
 
 			if (sprite.position.y > height - sprite.radius) {
 				sprite.velocity.y *= sprite.restitution;
