@@ -50,6 +50,6 @@ add(new Ball({
 loop.play();
 setTimeout(() => {
 	loop.pause();
-}, 7000);
+}, 3500);
 
 document.body.addEventListener('click', loop.pause);

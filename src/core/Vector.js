@@ -37,8 +37,13 @@ export default class Vector {
 	}
 
 	mult (scalar) {
-		this.x *= scalar;
-		this.y *= scalar;
+		if (typeof scalar === 'number') {
+			this.x *= scalar;
+			this.y *= scalar;
+		} else {
+			this.x *= scalar.x;
+			this.y *= scalar.y;
+		}
 	}
 
 	div (scalar) {

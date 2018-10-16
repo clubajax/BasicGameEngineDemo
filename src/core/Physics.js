@@ -23,11 +23,11 @@ export default class Physics {
 		const frameRate = this.frameRate; //1/60; // Seconds - 0.01666
 
 		// const T = 1/15;
-		const G = 2 * frameRate;
+		const gravity = 2 * frameRate;
 
 		this.sprites.forEach((sprite) => {
 
-			sprite.update(frameRate, G);
+			sprite.update(frameRate, gravity);
 
 			if (sprite.position.y > height - sprite.radius) {
 				sprite.velocity.y *= sprite.restitution;
